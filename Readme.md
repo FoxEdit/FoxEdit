@@ -1,0 +1,2 @@
+[![F's github stats](https://github-readme-stats.vercel.app/api?theme=github_dark&show_icons=true&count_private=true&username=FoxEdit&hide=prs,issues,contribs)](https://github.com/anuraghazra/github-readme-stats)
+[![Codeward](https://www.codewars.com/users/FoxEdit/badges/large)](https://www.codewars.com/users/FoxEdit)
