@@ -1,0 +1,33 @@
+name: Update cache bust in README.md (commit --amend)
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: README.md timestamp update
+        run: |
+          CURRENT_TIME=$(date +"%Y%m%d%H%M%S")
+          echo "Update the timestamp to $CURRENT_TIME"
+
+          sed -i "s|\(https://wakapi.dev/api/activity/chart/FoxEdit.svg?t=\)[^\" )]*|\1$CURRENT_TIME|g" README.md
+
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          
+          git add README.md
+
+          if ! git diff-index --quiet HEAD; then
+            git commit --amend --no-edit
+            git push --force
+          else
+            echo "No changes to commit"
+          fi
